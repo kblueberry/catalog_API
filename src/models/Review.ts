@@ -1,29 +1,21 @@
-import mongoose from 'mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
-export const ReviewSchema = new mongoose.Schema({
-  author: String,
-  date: String,
-  rate: Number,
-  comment: String,
-  productId: Number,
-});
-
+@Schema()
 export class Review {
-  constructor(
-    author: string,
-    rate: number,
-    comment: string,
-    productId: number,
-  ) {
-    this.author = author;
-    this.rate = rate;
-    this.comment = comment;
-    this.productId = productId;
-  }
-  id: number;
+  @Prop()
   author: string;
-  date: string = new Date().toDateString();
-  rate: number;
+
+  @Prop()
+  rate: string;
+
+  @Prop()
   comment: string;
-  productId: number;
+
+  @Prop({ default: new Date().toDateString() })
+  date: string;
+
+  @Prop()
+  productId: string;
 }
+
+export const ReviewSchema = SchemaFactory.createForClass(Review);

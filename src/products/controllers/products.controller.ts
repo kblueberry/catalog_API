@@ -17,7 +17,7 @@ export class ProductsController {
   }
 
   @Get('/:id/reviews')
-  getProductReviews(id: number): Promise<Array<Review>> {
+  getProductReviews(id: string): Promise<Array<Review>> {
     return this.reviewService.getProductReviews(id);
   }
 }

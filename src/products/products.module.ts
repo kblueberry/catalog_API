@@ -5,6 +5,7 @@ import { ProductsController } from './controllers/products.controller';
 import { ProductsService } from './services/products.service';
 import { ProductSchema } from '../models/ProductItem';
 import { ReviewsService } from './services/reviews.service';
+import { ReviewsController } from "./controllers/reviews.controller";
 
 @Module({
   imports: [
@@ -13,7 +14,7 @@ import { ReviewsService } from './services/reviews.service';
       { name: 'Review', schema: ReviewSchema },
     ]),
   ],
-  controllers: [ProductsController],
+  controllers: [ProductsController, ReviewsController],
   exports: [ProductsService, ReviewsService],
   providers: [ProductsService, ReviewsService],
 })

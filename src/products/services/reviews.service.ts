@@ -14,7 +14,6 @@ export class ReviewsService {
 
   async sendReview(productId: string, review: Review) {
     const reviewModel = new this.reviewModel(review);
-    reviewModel.productId = productId;
     return await reviewModel.save();
   }
 }

@@ -1,4 +1,4 @@
-import { Body, Controller, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 import { Review } from '../../models/Review';
 import { ReviewsService } from '../services/reviews.service';
 
@@ -6,11 +6,18 @@ import { ReviewsService } from '../services/reviews.service';
 export class ReviewsController {
   constructor(private reviewService: ReviewsService) {}
 
-  @Post()
+  @Post(':productId')
   createReview(
-    @Param('productId') productId,
+    @Param('productId') productId: string,
     @Body() review: Review,
   ): Promise<Review> {
     return this.reviewService.sendReview(productId, review);
+  }
+
+  @Get(':productId')
+  getProductReviews(
+    @Param('productId') productId: string,
+  ): Promise<Array<Review>> {
+    return this.reviewService.getProductReviews(productId);
   }
 }

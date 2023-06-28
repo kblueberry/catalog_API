@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Param, Put } from '@nestjs/common';
 import { ProductsService } from '../services/products.service';
 import { ProductItem } from '../../models/ProductItem';
 
@@ -9,5 +9,10 @@ export class ProductsController {
   @Get()
   getAllProducts(): Promise<Array<ProductItem>> {
     return this.productsService.getProducts();
+  }
+
+  @Put(':productId')
+  updateProduct(@Param('productId') productId, @Body() product: ProductItem) {
+    return this.productsService.updateProduct(productId, product);
   }
 }

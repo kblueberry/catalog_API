@@ -1,20 +1,21 @@
-import mongoose from 'mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
-export const ProductSchema = new mongoose.Schema({
-  productView: String,
-  productName: String,
-  priceLevel: String,
-  productBrand: String,
-  availabilityQmCount: Number,
-  inWishlist: Boolean,
-});
-
+@Schema()
 export class ProductItem {
-  id: number;
+  @Prop()
   productView: string;
+  @Prop()
   productName: string;
-  priceLevel: string;
+  @Prop()
   productBrand: string;
+  @Prop()
   availabilityQmCount: number;
-  inWishlist = false;
+  @Prop()
+  price: number;
+  @Prop()
+  inCart: boolean;
+  @Prop()
+  inWishList: boolean;
 }
+
+export const ProductSchema = SchemaFactory.createForClass(ProductItem);

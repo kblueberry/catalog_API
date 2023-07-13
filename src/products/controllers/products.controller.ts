@@ -15,4 +15,9 @@ export class ProductsController {
   updateProduct(@Param('productId') productId, @Body() product: ProductItem) {
     return this.productsService.updateProduct(productId, product);
   }
+
+  @Get(':productId')
+  getProductById(@Param('productId') productId): Promise<ProductItem> {
+    return this.productsService.getProductById(productId);
+  }
 }
